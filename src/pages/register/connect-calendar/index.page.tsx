@@ -27,7 +27,11 @@ export default function Register() {
       <ConnectBox>
         <ConnectItem>
           <Text>Google Calendar</Text>
-          <Button variant="secondary" size="sm" onClick={() => signIn('google')}>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => signIn('google')}
+          >
             Conectar
             <ArrowRight />
           </Button>
