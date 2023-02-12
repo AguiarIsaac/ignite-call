@@ -24,7 +24,7 @@ import {
   IntervalItem,
 } from './styles'
 import { api } from '../../../lib/axios'
-import { NextSeo } from 'next-seo';
+import { NextSeo } from 'next-seo'
 
 const timeIntervalsFormSchema = z.object({
   intervals: z
@@ -41,34 +41,34 @@ const timeIntervalsFormSchema = z.object({
     .refine((intervals) => intervals.length > 0, {
       message: 'Você precisa selecionar pelo menos um dia da semana',
     })
-  .transform((intervals) => {
-    return intervals.map((interval) => {
-      return {
-        weekDay: interval.weekDay,
-        startTimeInMinutes: convertTimeStringToMinutes(interval.startTime),
-        endTimeInMinutes: convertTimeStringToMinutes(interval.endTime),
-      }
+    .transform((intervals) => {
+      return intervals.map((interval) => {
+        return {
+          weekDay: interval.weekDay,
+          startTimeInMinutes: convertTimeStringToMinutes(interval.startTime),
+          endTimeInMinutes: convertTimeStringToMinutes(interval.endTime),
+        }
+      })
     })
-  })
-  .refine(
-    (intervals) => {
-      return intervals.every( // verifica se todos os objetos do array satisfazem a regra. .some verifica se apenas um dos objts satisfaz.
-        (interval) =>
-          interval.endTimeInMinutes - 60 >= interval.startTimeInMinutes,
-      )
-    },
-    {
-      message:
-        'O horário de término deve ser pelo menos 1h distante do início.',
-    },
-  ),
+    .refine(
+      (intervals) => {
+        return intervals.every(
+          // verifica se todos os objetos do array satisfazem a regra. .some verifica se apenas um dos objts satisfaz.
+          (interval) =>
+            interval.endTimeInMinutes - 60 >= interval.startTimeInMinutes,
+        )
+      },
+      {
+        message:
+          'O horário de término deve ser pelo menos 1h distante do início.',
+      },
+    ),
 })
 
 type TimeIntervalsFormInput = z.input<typeof timeIntervalsFormSchema>
 type TimeIntervalsFormOutput = z.output<typeof timeIntervalsFormSchema>
 
 export default function TimeIntervals() {
-
   const {
     register,
     handleSubmit,
@@ -111,7 +111,6 @@ export default function TimeIntervals() {
     await router.push('/register/update-profile')
   }
 
-
   return (
     <>
       <NextSeo title="Selecione sua disponibilidade | Ignite Call" noindex />
@@ -119,8 +118,8 @@ export default function TimeIntervals() {
         <Header>
           <Heading as="strong">Quase lá</Heading>
           <Text>
-            Defina o intervalo de horário que você está disponível em cada dia da
-            semana.
+            Defina o intervalo de horário que você está disponível em cada dia
+            da semana.
           </Text>
 
           <MultiStep size={4} currentStep={3} />
@@ -128,11 +127,11 @@ export default function TimeIntervals() {
 
         <IntervalBox as="form" onSubmit={handleSubmit(handleSetTimeIntervals)}>
           <IntervalContainer>
-          {fields.map((field, index) => {
+            {fields.map((field, index) => {
               return (
                 <IntervalItem key={field.id}>
                   <IntervalDay>
-                  <Controller
+                    <Controller
                       name={`intervals.${index}.enabled`}
                       control={control}
                       render={({ field }) => {

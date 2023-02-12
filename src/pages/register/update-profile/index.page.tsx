@@ -1,9 +1,16 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Avatar, Button, Heading, MultiStep, Text, TextArea } from '@ignite-ui/react'
+import {
+  Avatar,
+  Button,
+  Heading,
+  MultiStep,
+  Text,
+  TextArea,
+} from '@ignite-ui/react'
 import { GetServerSideProps } from 'next'
 import { unstable_getServerSession } from 'next-auth'
 import { useSession } from 'next-auth/react'
-import { NextSeo } from 'next-seo';
+import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
@@ -35,7 +42,6 @@ export default function UpdateProfile() {
   async function handleUpdateProfile(data: UpdateProfileData) {
     await api.put('/users/profile', {
       bio: data.bio,
-
     })
 
     await router.push(`/schedule/${session.data?.user.username}`)
@@ -48,8 +54,8 @@ export default function UpdateProfile() {
         <Header>
           <Heading as="strong">Bem-vindo ao Ignite Call!</Heading>
           <Text>
-            Precisamos de algumas informações para criar seu perfil! Ah, você pode
-            editar essas informações depois.
+            Precisamos de algumas informações para criar seu perfil! Ah, você
+            pode editar essas informações depois.
           </Text>
 
           <MultiStep size={4} currentStep={4} />

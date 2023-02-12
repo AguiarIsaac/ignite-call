@@ -34,7 +34,7 @@ export const IntervalInputs = styled('div', {
   alignItems: 'center',
   gap: '$2',
 
-  'input::-webkit-calendar-picker-indicator': { 
+  'input::-webkit-calendar-picker-indicator': {
     // PARA ESTILIZAR ICONES DE DENTRO DOS INPUTS. SÓ FUNCIONA VIA FILTER, BACKGROUND E COLOCAR NÃO FUNCIONA
     filter: 'invert(100%) brightness(40%)',
   },

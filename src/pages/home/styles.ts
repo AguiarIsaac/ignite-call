@@ -3,14 +3,14 @@ import background from '../../assets/background.png'
 
 export const Container = styled('div', {
   display: 'flex',
-  alignItems:'center',
-  gap:'$20',
-  marginLeft:'auto',
+  alignItems: 'center',
+  gap: '$20',
+  marginLeft: 'auto',
   maxWidth: 'calc(100vw - (100vw - 1160px) / 2)',
-  height:'100vh',
+  height: '100vh',
 
   '@media(max-width: 768px)': {
-    justifyContent:'center'
+    justifyContent: 'center',
   },
 })
 
@@ -25,18 +25,16 @@ export const Hero = styled('div', {
   },
 
   [` > ${Text}`]: {
-    marginTop:'$2',
-    color:'$gray200'
+    marginTop: '$2',
+    color: '$gray200',
   },
-
 })
 
 export const Preview = styled('div', {
   paddingRight: '$8',
-  overflow:'hidden',
+  overflow: 'hidden',
 
   '@media(max-width: 768px)': {
-    display:'none'
+    display: 'none',
   },
-
 })

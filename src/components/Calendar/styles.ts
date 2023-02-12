@@ -19,7 +19,7 @@ export const CalendarTitle = styled(Text, {
     color: '$gray200',
   },
 
-  textTransform: 'capitalize'
+  textTransform: 'capitalize',
 })
 
 export const CalendarActions = styled('div', {

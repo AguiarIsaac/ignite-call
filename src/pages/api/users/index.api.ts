@@ -36,6 +36,5 @@ export default async function handler(
     path: '/',
   })
 
-
   return res.status(201).json(user)
 }

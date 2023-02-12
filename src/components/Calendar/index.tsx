@@ -35,7 +35,6 @@ interface BlockedDates {
 type CalendarWeeks = CalendarWeek[]
 
 export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
-
   const [currentDate, setCurrentDate] = useState(() => {
     return dayjs().set('date', 1)
   })
@@ -76,12 +75,11 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
   )
 
   const calendarWeeks = useMemo(() => {
-
-    if(!blockedDates) {
+    if (!blockedDates) {
       return []
     }
     // console.log('calendarWeeks ~ blockedDates', blockedDates)
-    
+
     const daysInMonthArray = Array.from({
       length: currentDate.daysInMonth(),
     }).map((_, i) => {
@@ -98,55 +96,55 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
       })
       .reverse()
 
-      const lastDayInCurrentMonth = currentDate.set(
-        'date',
-        currentDate.daysInMonth(),
-      )
-      const lastWeekDay = lastDayInCurrentMonth.get('day')
-  
-      const nextMonthFillArray = Array.from({
-        length: 7 - (lastWeekDay + 1),
-      }).map((_, i) => {
-        return lastDayInCurrentMonth.add(i + 1, 'day')
-      })
-  
-      const calendarDays = [
-        ...previousMonthFillArray.map((date) => {
-          return { date, disabled: true }
-        }),
-        ...daysInMonthArray.map((date) => {
-          return {
-            date,
-            disabled:
-              date.endOf('day').isBefore(new Date()) ||
-              blockedDates.blockedWeekDays.includes(date.get('day')) ||
-              blockedDates.blockedDates.includes(date.get('date')),
-          }
-        }),
-        ...nextMonthFillArray.map((date) => {
-          return { date, disabled: true }
-        }),
-      ]
-  
-      const calendarWeeks = calendarDays.reduce<CalendarWeeks>(
-        (weeks, _, i, original) => {
-          const isNewWeek = i % 7 === 0
-  
-          if (isNewWeek) {
-            weeks.push({
-              week: i / 7 + 1,
-              days: original.slice(i, i + 7),
-            })
-          }
-  
-          return weeks
-        },
-        [],
-      )
-  
-      return calendarWeeks
+    const lastDayInCurrentMonth = currentDate.set(
+      'date',
+      currentDate.daysInMonth(),
+    )
+    const lastWeekDay = lastDayInCurrentMonth.get('day')
+
+    const nextMonthFillArray = Array.from({
+      length: 7 - (lastWeekDay + 1),
+    }).map((_, i) => {
+      return lastDayInCurrentMonth.add(i + 1, 'day')
+    })
+
+    const calendarDays = [
+      ...previousMonthFillArray.map((date) => {
+        return { date, disabled: true }
+      }),
+      ...daysInMonthArray.map((date) => {
+        return {
+          date,
+          disabled:
+            date.endOf('day').isBefore(new Date()) ||
+            blockedDates.blockedWeekDays.includes(date.get('day')) ||
+            blockedDates.blockedDates.includes(date.get('date')),
+        }
+      }),
+      ...nextMonthFillArray.map((date) => {
+        return { date, disabled: true }
+      }),
+    ]
+
+    const calendarWeeks = calendarDays.reduce<CalendarWeeks>(
+      (weeks, _, i, original) => {
+        const isNewWeek = i % 7 === 0
+
+        if (isNewWeek) {
+          weeks.push({
+            week: i / 7 + 1,
+            days: original.slice(i, i + 7),
+          })
+        }
+
+        return weeks
+      },
+      [],
+    )
+
+    return calendarWeeks
   }, [currentDate, blockedDates])
-  
+
   return (
     <CalendarContainer>
       <CalendarHeader>
@@ -173,13 +171,16 @@ export function Calendar({ selectedDate, onDateSelected }: CalendarProps) {
           </tr>
         </thead>
         <tbody>
-        {calendarWeeks.map(({ week, days }) => {
+          {calendarWeeks.map(({ week, days }) => {
             return (
               <tr key={week}>
                 {days.map(({ date, disabled }) => {
                   return (
                     <td key={date.toString()}>
-                      <CalendarDay disabled={disabled} onClick={() => onDateSelected(date.toDate())}>
+                      <CalendarDay
+                        disabled={disabled}
+                        onClick={() => onDateSelected(date.toDate())}
+                      >
                         {date.get('date')}
                       </CalendarDay>
                     </td>

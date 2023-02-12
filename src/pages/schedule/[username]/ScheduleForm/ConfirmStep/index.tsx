@@ -21,8 +21,10 @@ interface ConfirmStepProps {
 
 type ConfirmFormData = z.infer<typeof confirmFormSchema>
 
-export function ConfirmStep({ schedulingDate, onCancelConfirmation }: ConfirmStepProps) {
-  
+export function ConfirmStep({
+  schedulingDate,
+  onCancelConfirmation,
+}: ConfirmStepProps) {
   const {
     register,
     handleSubmit,
@@ -31,8 +33,8 @@ export function ConfirmStep({ schedulingDate, onCancelConfirmation }: ConfirmSte
     resolver: zodResolver(confirmFormSchema),
   })
 
-    const router = useRouter()
-    const username = String(router.query.username)
+  const router = useRouter()
+  const username = String(router.query.username)
 
   async function handleConfirmScheduling(data: ConfirmFormData) {
     const { name, email, observations } = data
@@ -47,10 +49,8 @@ export function ConfirmStep({ schedulingDate, onCancelConfirmation }: ConfirmSte
     onCancelConfirmation()
   }
 
-  
   const describedDate = dayjs(schedulingDate).format('DD[ de ]MMMM[ de ]YYYY')
   const describedTime = dayjs(schedulingDate).format('HH:mm[h]')
-
 
   return (
     <ConfirmForm as="form" onSubmit={handleSubmit(handleConfirmScheduling)}>
@@ -92,7 +92,9 @@ export function ConfirmStep({ schedulingDate, onCancelConfirmation }: ConfirmSte
         <Button type="button" variant="tertiary" onClick={onCancelConfirmation}>
           Cancelar
         </Button>
-        <Button type="submit" disabled={isSubmitting}>Confirmar</Button>
+        <Button type="submit" disabled={isSubmitting}>
+          Confirmar
+        </Button>
       </FormActions>
     </ConfirmForm>
   )

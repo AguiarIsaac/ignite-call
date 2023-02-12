@@ -1,15 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Heading, MultiStep, Text, TextInput } from "@ignite-ui/react";
-import { ArrowRight } from "phosphor-react";
-import { Container, Form, FormError, Header } from "./styles";
+import { Button, Heading, MultiStep, Text, TextInput } from '@ignite-ui/react'
+import { ArrowRight } from 'phosphor-react'
+import { Container, Form, FormError, Header } from './styles'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { api } from '../../lib/axios'
 import { AxiosError } from 'axios'
-import { NextSeo } from 'next-seo';
-
+import { NextSeo } from 'next-seo'
 
 const registerFormSchema = z.object({
   username: z
@@ -27,7 +26,6 @@ const registerFormSchema = z.object({
 type RegisterFormData = z.infer<typeof registerFormSchema>
 
 export default function Register() {
-
   const {
     register,
     handleSubmit,
@@ -37,7 +35,6 @@ export default function Register() {
     resolver: zodResolver(registerFormSchema),
   })
 
-  
   const router = useRouter()
 
   useEffect(() => {
@@ -69,18 +66,18 @@ export default function Register() {
       <NextSeo title="Crie uma conta | Ignite Call" />
       <Container>
         <Header>
-          <Heading as='strong'>Bem-vindo ao Ignite Call</Heading>
+          <Heading as="strong">Bem-vindo ao Ignite Call</Heading>
           <Text>
-            Presicamos de algumas informações para criar seu perfil! Ah, você pode
-            editar essas informações depois.
+            Presicamos de algumas informações para criar seu perfil! Ah, você
+            pode editar essas informações depois.
           </Text>
 
           <MultiStep size={4} currentStep={1} />
         </Header>
 
-        <Form as='form' onSubmit={handleSubmit(handleRegister)}>
+        <Form as="form" onSubmit={handleSubmit(handleRegister)}>
           <label>
-            <Text size='sm'>Nome de usuário</Text>
+            <Text size="sm">Nome de usuário</Text>
             <TextInput
               prefix="ignite.com/"
               placeholder="seu-usuário"
@@ -93,18 +90,17 @@ export default function Register() {
           </label>
 
           <label>
-            <Text size='sm'>Nome completo</Text>
+            <Text size="sm">Nome completo</Text>
             <TextInput placeholder="Seu nome" {...register('name')} />
-              {errors.name && (
-                <FormError size="sm">{errors.name.message}</FormError>
-              )}
+            {errors.name && (
+              <FormError size="sm">{errors.name.message}</FormError>
+            )}
           </label>
 
           <Button>
-            Proxímo passo 
+            Proxímo passo
             <ArrowRight />
           </Button>
-
         </Form>
       </Container>
     </>

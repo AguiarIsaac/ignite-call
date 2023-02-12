@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Container, Hero, Preview } from './styles'
 import imagePreview from '../../assets/app-preview.png'
 import { ClaimUsernameForm } from './components/ClaimUsernameForm'
-import { NextSeo } from 'next-seo';
+import { NextSeo } from 'next-seo'
 
 export default function Home() {
   return (
@@ -14,18 +14,21 @@ export default function Home() {
       />
       <Container>
         <Hero>
-          <Heading size='4xl'>Agendamento descomplicado</Heading>
-          <Text size='lg'>Conecte seu calendário e permita que as pessoas marquem agendamentos no seu tempo livre.</Text>
+          <Heading size="4xl">Agendamento descomplicado</Heading>
+          <Text size="lg">
+            Conecte seu calendário e permita que as pessoas marquem agendamentos
+            no seu tempo livre.
+          </Text>
           <ClaimUsernameForm />
         </Hero>
 
         <Preview>
-          <Image 
+          <Image
             src={imagePreview}
             height={400}
             quality={100}
             priority
-            alt='Clendário simbolizando aplicação em funcionamento'
+            alt="Clendário simbolizando aplicação em funcionamento"
           />
         </Preview>
       </Container>

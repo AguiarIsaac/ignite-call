@@ -5,10 +5,9 @@ import { Container, Header } from '../styles'
 import { AuthError, ConnectBox, ConnectItem } from './styles'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { NextSeo } from 'next-seo';
+import { NextSeo } from 'next-seo'
 
 export default function ConnectCalendar() {
-  
   const session = useSession()
   const router = useRouter()
 
@@ -64,7 +63,11 @@ export default function ConnectCalendar() {
             </AuthError>
           )}
 
-          <Button type="submit" disabled={!isSignedId} onClick={handleNavigateToNextStep}>
+          <Button
+            type="submit"
+            disabled={!isSignedId}
+            onClick={handleNavigateToNextStep}
+          >
             Próximo passo
             <ArrowRight />
           </Button>
