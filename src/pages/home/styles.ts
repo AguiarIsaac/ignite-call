@@ -1,5 +1,4 @@
 import { styled, Heading, Text } from '@ignite-ui/react'
-import background from '../../assets/background.png'
 
 export const Container = styled('div', {
   display: 'flex',
