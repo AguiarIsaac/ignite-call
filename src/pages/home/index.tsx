@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Container, Hero, Preview } from './styles'
 import imagePreview from '../../assets/app-preview.png'
 import { ClaimUsernameForm } from './components/ClaimUsernameForm'
-import { NextSeo } from 'next-seo/lib/meta/nextSEO'
+import { NextSeo } from 'next-seo';
 
 export default function Home() {
   return (

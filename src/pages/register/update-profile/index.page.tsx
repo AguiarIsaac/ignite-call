@@ -3,7 +3,7 @@ import { Avatar, Button, Heading, MultiStep, Text, TextArea } from '@ignite-ui/r
 import { GetServerSideProps } from 'next'
 import { unstable_getServerSession } from 'next-auth'
 import { useSession } from 'next-auth/react'
-import { NextSeo } from 'next-seo/lib/meta/nextSEO'
+import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router'
 import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'

@@ -24,7 +24,7 @@ import {
   IntervalItem,
 } from './styles'
 import { api } from '../../../lib/axios'
-import { NextSeo } from 'next-seo/lib/meta/nextSEO'
+import { NextSeo } from 'next-seo';
 
 const timeIntervalsFormSchema = z.object({
   intervals: z
